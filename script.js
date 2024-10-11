@@ -145,8 +145,8 @@ function evaluateExpression(expression) {
     }
 
     // 为了调用 eval 计算加减法，需要将单个减号替换为+-
-    expression = expression.replace(/--/g, '+');
     expression = expression.replace(/([0-9])-/g, '$1+-');
+    expression = expression.replace(/--/g, '+');
 
     // 处理加减法
     if (expression.includes('+')) {
@@ -244,15 +244,15 @@ function generateRandomQuestionHard() {
             if (num3 !== 0) {
                 if (operator1 === '+') {
                     // 生成一个 0 到 tmpRes * (num3 - 1) 的随机整数
-                    let randNum = Math.floor(Math.random() * tmpRes * (num3 - 1));
-                    let anotherNum = tmpRes * (num3 - 1) - randNum;
+                    let randNum = Math.floor(Math.random() * Math.abs(tmpRes * (num3 - 1)));
+                    let anotherNum = Math.abs(tmpRes * (num3 - 1)) - randNum;
                     num1 += randNum;
                     num2 += anotherNum;
                 }
                 if (operator1 === '-') {
                     // 生成一个 0 到 tmpRes * (num3 - 1) 的随机整数
-                    let randNum = Math.floor(Math.random() * tmpRes * (num3 - 1));
-                    let anotherNum = tmpRes * (num3 - 1) + randNum;
+                    let randNum = Math.floor(Math.random() * Math.abs(tmpRes * (num3 - 1)));
+                    let anotherNum = Math.abs(tmpRes * (num3 - 1)) + randNum;
                     num1 += anotherNum;
                     num2 += randNum;
                 }
@@ -271,10 +271,6 @@ function generateRandomQuestionHard() {
         correctAnswer = evaluateExpression(currentQuestion);
         if (correctAnswer % 1 > 0.000001) {
             throw "not integer";
-        } else if (correctAnswer !== correctAnswer) {
-            throw "nan";
-        } else if (correctAnswer === null || correctAnswer === undefined) {
-            throw "null / undefined";
         }
     } catch {
         console.log("err");
