@@ -216,7 +216,7 @@ function generateRandomQuestionHard() {
         if (combine_num12) { // 前两个加括号，就只能乘到num1上
             if (num2 !== 0) num1 *= num2;
             if (num3 !== 0) num1 *= num3;
-        } else if (num3 = 0 | Math.random() < 0.5) {
+        } else if (num3 === 0 || Math.random() < 0.5) {
             if (num2 !== 0) num1 *= num2;
         } else {
             if (num2 !== 0) num3 *= num2;
