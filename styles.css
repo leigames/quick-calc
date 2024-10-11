@@ -1,0 +1,102 @@
+/* 样式设置 */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    height: 100%;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+  
+  .start-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+  }
+
+  .choose-mode {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 50px;
+    row-gap: 5px;
+  }
+  
+  .start-button {
+    background-color: white;
+    color: black;
+    font-size: 1.7rem;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+  }
+  
+  .question {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .answer input {
+    font-size: 2rem;
+    text-align: center;
+    width: 100px;
+    margin-bottom: 20px;
+    border: none;
+    background-color: black;
+    color: #FFC600;
+    outline: none;
+  }
+  
+  .digits {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  
+  .digit {
+    background-color: white;
+    color: black;
+    font-size: 1.5rem;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .timer, .score {
+    margin-top: 20px;
+    font-size: 1.5rem;
+  }
+  
+  .feedback {
+    margin-top: 65px;
+    margin-bottom: 65px;
+    font-size: 1.5rem;
+    display: none;
+  }
+  
+  @media (max-width: 600px) {
+    .question {
+      font-size: 2rem;
+    }
+    .digit {
+      font-size: 1.2rem;
+    }
+  }

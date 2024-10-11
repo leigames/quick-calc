@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="./favicon.svg">
+  <title>雷氏数学口算</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- 开始游戏界面 -->
+  <div class="start-screen" id="startScreen">
+    <h1>雷氏数学口算</h1>
+    <div class="choose-mode">
+        <button class="start-button" onclick="startGame('easy')">简单模式</button>
+        <button class="start-button" onclick="startGame('hard')">困难模式</button>
+        <span>最高纪录：<span id="easyModeRecord">0</span></span>
+        <span>最高纪录：<span id="hardModeRecord">0</span></span>
+    </div>
+  </div>
+
+  <!-- 游戏界面 -->
+  <div class="container" id="gameContainer" style="display:none;">
+    <div class="question" id="question">题目加载中...</div>
+    <div class="answer">
+      <input type="text" id="userAnswer" placeholder="_" disabled />
+    </div>
+    <div class="digits" id="digits">
+      <button class="digit" onclick="appendDigit(0)">0</button>
+      <button class="digit" onclick="appendDigit(1)">1</button>
+      <button class="digit" onclick="appendDigit(2)">2</button>
+      <button class="digit" onclick="appendDigit(3)">3</button>
+      <button class="digit" onclick="appendDigit(4)">4</button>
+      <button class="digit" onclick="appendDigit(5)">5</button>
+      <button class="digit" onclick="appendDigit(6)">6</button>
+      <button class="digit" onclick="appendDigit(7)">7</button>
+      <button class="digit" onclick="appendDigit(8)">8</button>
+      <button class="digit" onclick="appendDigit(9)">9</button>
+      <button class="digit" onclick="inverse()">-</button>
+      <button class="digit" onclick="backspace()">退格</button>
+      <button class="digit" onclick="clearAnswer()">清除</button>
+      <button class="digit" onclick="checkAnswer()">确认</button>
+      <button class="digit" onclick="quit()">结束</button>
+      <!--<button class="digit" onclick="skipQuestion()">跳过</button>-->
+    </div>
+    <div class="feedback" id="feedback"></div>
+    
+    <div class="timer" id="timer">Time Left: 30s</div>
+    <div class="score" id="score">得分: 0</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
