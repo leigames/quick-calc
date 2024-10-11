@@ -165,33 +165,35 @@ function evaluateExpression(expression) {
         expression = result.toString();  // 将计算结果替换为字符串
     }
 
-    // 处理乘法（任何数乘以0等于该数）
-    if (expression.includes('*')) {
-        let parts = expression.split('*');
-        let result = evaluateExpression(parts[0]);
-        for (let i = 1; i < parts.length; i++) {
-            let nextPart = evaluateExpression(parts[i]);
-            if (nextPart !== 0) {
-                result *= nextPart;
-            } // 否则，乘以0保持原值
-        }
-        expression = result.toString();  // 将结果转换为字符串
-    }
-
-    // 处理从右往左的连除式
-    if (expression.includes('/')) {
-        let parts = expression.split('/');
-        let result = parseFloat(parts.pop());
-        while (parts.length > 0) {
-            let nextPart = parseFloat(parts.pop());
-            if (result === 0) {
-                result = nextPart;  // 如果除数是0，返回被除数
-            } else {
-                result = nextPart / result;
+    if (expression.includes('*') || expression.includes('/') ) {
+        let numbers = expression.split(/\*|\//);
+        let operators = expression.split('').filter((c) => c === '*' || c === '/');
+        console.log(operators);
+        let number_stack = [parseFloat(numbers[0])];
+        // let operator_stack = [];
+        for (var i = 0; i < operators.length; i++) {
+            if (operators[i] === '*') {
+                while (number_stack.length > 1) {
+                    let last_number = number_stack.pop();
+                    let next_number = number_stack.pop();
+                    number_stack.push((last_number === 0) ? next_number : next_number / last_number);
+                }
+                number_stack[0] *= (parseFloat(numbers[i + 1]) === 0)? 1 : parseFloat(numbers[i + 1]);
+            } else if (operators[i] === '/') {
+                number_stack.push(parseFloat(numbers[i + 1]));
             }
         }
-        expression = result.toString();  // 将计算结果替换为字符串
+        
+        while (number_stack.length > 1) {
+            // console.log(number_stack);
+            let last_number = number_stack.pop();
+            let next_number = number_stack.pop();
+            // console.log(last_number, next_number);
+            number_stack.push((last_number === 0) ? next_number : next_number / last_number);
+        }
+        expression = number_stack[0].toString();
     }
+    // console.log(eval(expression));
     
     // 处理加法和减法
     let result = eval(expression);  // 使用 eval 计算加减法
