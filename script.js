@@ -57,7 +57,7 @@ function startTimer() {
     timeLeft = timeLeft - 0.1;
     timeLeft = Math.round(timeLeft * 10) / 10;
     timerElement.textContent = `剩余时间：${timeLeft} s`;
-    if (timeLeft === 0) {
+    if (timeLeft <= 0) {
       clearInterval(timer);
       endGame();
     }
