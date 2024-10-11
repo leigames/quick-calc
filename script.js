@@ -49,7 +49,7 @@ function startGame(mode) {
 }
 
 function startTimer() {
-  timerElement.textContent = `Time Left: ${timeLeft} s`;
+  timerElement.textContent = `剩余时间：${timeLeft} s`;
   if (timer) {
     clearInterval(timer);
   }
