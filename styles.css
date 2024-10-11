@@ -55,12 +55,13 @@ body, html {
   
   .answer input {
     font-size: 2rem;
+    font-family: Georgia, Times, 'Times New Roman', serif;
     text-align: center;
     width: 100px;
     margin-bottom: 20px;
     border: none;
     background-color: black;
-    color: lemonchiffon;
+    color: cyan;
     outline: none;
   }
   
