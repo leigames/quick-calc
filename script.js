@@ -145,8 +145,8 @@ function evaluateExpression(expression) {
     }
 
     // 为了调用 eval 计算加减法，需要将单个减号替换为+-
-    expression = expression.replace(/([0-9])-/g, '$1+-');
     expression = expression.replace(/--/g, '+');
+    expression = expression.replace(/([0-9])-/g, '$1+-');
 
     // 处理加减法
     if (expression.includes('+')) {
@@ -271,6 +271,10 @@ function generateRandomQuestionHard() {
         correctAnswer = evaluateExpression(currentQuestion);
         if (correctAnswer % 1 > 0.000001) {
             throw "not integer";
+        } else if (correctAnswer !== correctAnswer) {
+            throw "nan";
+        } else if (correctAnswer === null || correctAnswer === undefined) {
+            throw "null / undefined";
         }
     } catch {
         console.log("err");
