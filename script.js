@@ -13,8 +13,8 @@ const easyModeRecord = document.getElementById('easyModeRecord');
 const hardModeRecord = document.getElementById('hardModeRecord');
 
 function showRecords() {
-    easyModeRecord.textContent = `${localStorage.getItem('easyModeRecord') || 0}`;
-    hardModeRecord.textContent = `${localStorage.getItem('hardModeRecord') || 0}`;
+    easyModeRecord.textContent = `${localStorage.getItem('easyModeRecordv2') || 0}`;
+    hardModeRecord.textContent = `${localStorage.getItem('hardModeRecordv2') || 0}`;
 }
 
 showRecords();
@@ -75,10 +75,10 @@ function quit() {
 
 function endGame() {
   if (gameMode === "easy") {
-    localStorage.setItem('easyModeRecord', Math.max(score, localStorage.getItem('easyModeRecord') || 0));
+    localStorage.setItem('easyModeRecord', Math.max(score, localStorage.getItem('easyModeRecordv2') || 0));
     alert(`【简单模式】游戏结束！你答对了 ${score} 道题目。`);
   } else if (gameMode === "hard") {
-    localStorage.setItem('hardModeRecord', Math.max(score, localStorage.getItem('hardModeRecord') || 0));
+    localStorage.setItem('hardModeRecord', Math.max(score, localStorage.getItem('hardModeRecordv2') || 0));
     alert(`【困难模式】游戏结束！你答对了 ${score} 道题目。`);
   }
   window.location.reload();
@@ -320,6 +320,7 @@ function checkAnswer() {
     score++;
   } else {
     feedbackElement.innerHTML = `<span style="color:#DE4313">错误！正确答案是 ${correctAnswer}</span>`;
+    timeLeft -= 2.0;
   }
   scoreElement.textContent = `得分: ${score}`;
   setTimeout(() => {
@@ -331,6 +332,7 @@ function checkAnswer() {
   }, 1000);
 }
 
+/*
 function skipQuestion() {
   pauseTimer();
   document.getElementById('digits').style.display = 'none';
@@ -344,6 +346,7 @@ function skipQuestion() {
     startTimer();
   }, 1000);
 }
+*/
 
 function generateRandomQuestionHardSets() {
     for (let i = 0; i < 100; i++) {
