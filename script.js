@@ -81,9 +81,7 @@ function endGame() {
     localStorage.setItem('hardModeRecord', Math.max(score, localStorage.getItem('hardModeRecord') || 0));
     alert(`【困难模式】游戏结束！你答对了 ${score} 道题目。`);
   }
-  document.getElementById('startScreen').style.display = 'flex';
-  document.getElementById('gameContainer').style.display = 'none';
-  showRecords();
+  window.location.reload();
 }
 
 function resetGame() {
