@@ -49,14 +49,15 @@ function startGame(mode) {
 }
 
 function startTimer() {
-  timerElement.textContent = `剩余时间：${timeLeft} s`;
+  // timeLeft = Math.round(timeLeft * 10) / 10;
+  timerElement.textContent = `剩余时间：${timeLeft.toFixed(1)} s`;
   if (timer) {
     clearInterval(timer);
   }
   timer = setInterval(() => {
     timeLeft = timeLeft - 0.1;
     timeLeft = Math.round(timeLeft * 10) / 10;
-    timerElement.textContent = `剩余时间：${timeLeft} s`;
+    timerElement.textContent = `剩余时间：${timeLeft.toFixed(1)} s`;
     if (timeLeft <= 0) {
       clearInterval(timer);
       endGame();
@@ -75,10 +76,10 @@ function quit() {
 
 function endGame() {
   if (gameMode === "easy") {
-    localStorage.setItem('easyModeRecord', Math.max(score, localStorage.getItem('easyModeRecordv2') || 0));
+    localStorage.setItem('easyModeRecordv2', Math.max(score, localStorage.getItem('easyModeRecordv2') || 0));
     alert(`【简单模式】游戏结束！你答对了 ${score} 道题目。`);
   } else if (gameMode === "hard") {
-    localStorage.setItem('hardModeRecord', Math.max(score, localStorage.getItem('hardModeRecordv2') || 0));
+    localStorage.setItem('hardModeRecordv2', Math.max(score, localStorage.getItem('hardModeRecordv2') || 0));
     alert(`【困难模式】游戏结束！你答对了 ${score} 道题目。`);
   }
   window.location.reload();
@@ -145,8 +146,8 @@ function evaluateExpression(expression) {
     }
 
     // 为了调用 eval 计算加减法，需要将单个减号替换为+-
-    expression = expression.replace(/([0-9])-/g, '$1+-');
     expression = expression.replace(/--/g, '+');
+    expression = expression.replace(/([0-9])-/g, '$1+-');
 
     // 处理加减法
     if (expression.includes('+')) {
@@ -271,6 +272,10 @@ function generateRandomQuestionHard() {
         correctAnswer = evaluateExpression(currentQuestion);
         if (correctAnswer % 1 > 0.000001) {
             throw "not integer";
+        } else if (isNaN(correctAnswer)) {
+            throw "NaN";
+        } else if (correctAnswer === null || correctAnswer === undefined) {
+            throw "null or undefined";
         }
     } catch {
         console.log("err");
@@ -348,8 +353,37 @@ function skipQuestion() {
 }
 */
 
+// Help Modal Logic
+const modal = document.getElementById("helpModal");
+const helpBtn = document.getElementById("helpBtn");
+const closeBtn = document.getElementsByClassName("close")[0];
+
+// 打开帮助弹框
+helpBtn.onclick = function() {
+    modal.style.display = "flex"; // 显示帮助框
+    // pauseTimer(); // 暂停倒计时
+}
+
+// 关闭帮助弹框
+closeBtn.onclick = function() {
+    modal.style.display = "none"; // 隐藏帮助框
+    // startTimer(); // 重新开始倒计时
+}
+
+// 点击窗口外部时关闭帮助弹框
+window.onclick = function(event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+        // startTimer(); // 重新开始倒计时
+    }
+}
+
+/*
 function generateRandomQuestionHardSets() {
     for (let i = 0; i < 100; i++) {
         generateRandomQuestionHard();
     }
 }
+*/
+
+

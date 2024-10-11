@@ -40,6 +40,23 @@
     </div>
   </div>
 
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>帮助</h2>
+        <p>雷氏数学运算法则：</p>
+        <ul>
+          <li><b><u>乘（除）0 不变律</u>：</b>任何数加 0、减 0、乘 0、除以 0，结果仍是那个数。如 1 * 0 = 1，1 / 0 = 1。</li>
+          <li><b><u>除法结合律</u>：</b>连除式从右往左计算。如 10 / 1 / 10 = 10 / (1 / 10) = 100。</li>
+          <li><b><u>括号直连律</u>：</b>混合算式中括号优先运算，其结果直接以字符串形式代入原算式。如 2(1 + 2) = 23，这里是直接把括号中 1 + 2 的结果 3 代入原算式，与前面的 2 直接以字符串形式相连得到 23 了。</li>
+          <li>其余运算法则与传统四则运算相同。</li>
+        </ul>
+        <p>简单模式为二元运算，倒计时 30 s。困难模式为三元运算，倒计时 60 s。每做对一题得 1 分，每做错一题罚时 2 s。</p>
+        <p>电脑端支持键盘输入：数字（0~9）、负号（-）、退格（BackSpace）、清除（C）、确认（Enter）和退出（Esc）。</p>
+    </div>
+  </div>
+
+
   <!-- 游戏界面 -->
   <div class="container" id="gameContainer" style="display:none;">
     <div class="question" id="question">题目加载中...</div>
@@ -69,6 +86,12 @@
     <div class="timer" id="timer">剩余时间：30 s</div>
     <div class="score" id="score">得分: 0</div>
   </div>
+  
+  <footer>
+    <div id="helpBtn">
+      <a>帮助</a>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
