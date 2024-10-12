@@ -6,27 +6,6 @@
   <link rel="icon" href="./favicon.svg">
   <title>雷氏数学口算</title>
   <link rel="stylesheet" href="styles.css">
-      <script>
-      // iOS Safari 禁用缩放
-      window.onload=function () {
-        document.addEventListener('touchstart',function (event) {
-          if(event.touches.length>1){
-            event.preventDefault();
-          }
-        });
-        var lastTouchEnd=0;
-        document.addEventListener('touchend',function (event) {
-          var now=(new Date()).getTime();
-          if(now-lastTouchEnd<=300){
-            event.preventDefault();
-          }
-          lastTouchEnd=now;
-        },false);
-        document.addEventListener('gesturestart', function (event) {
-          event.preventDefault();
-        });
-      }
-    </script>
 </head>
 <body>
   <!-- 开始游戏界面 -->
