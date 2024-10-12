@@ -147,6 +147,7 @@ function evaluateExpression(expression) {
         expression = expression.replace(/\(([^()]+)\)/, (match, group1) => {
             return evaluateExpression(group1);  // 递归处理括号内容
         });
+        return evaluateExpression(expression);
     }
 
     // 为了调用 eval 计算加减法，需要将单个减号替换为+-
@@ -168,6 +169,7 @@ function evaluateExpression(expression) {
             result += parseFloat(part);
         }
         expression = result.toString();  // 将计算结果替换为字符串
+        return evaluateExpression(expression);
     }
 
     if (expression.includes('*') || expression.includes('/') ) {
