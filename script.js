@@ -88,7 +88,7 @@ function endGame() {
 function resetGame() {
   timeLeft = totalTime;
   score = 0;
-  scoreElement.textContent = `得分: ${score}`;
+  scoreElement.textContent = `得分：${score}`;
   feedbackElement.textContent = '';
   generateRandomQuestion();
   startTimer();
@@ -333,7 +333,7 @@ function checkAnswer() {
     feedbackElement.innerHTML = `<span style="color:#DE4313">错误！正确答案是 ${correctAnswer}</span>`;
     timeLeft -= 2.0;
   }
-  scoreElement.textContent = `得分: ${score}`;
+  scoreElement.textContent = `得分：${score}`;
   setTimeout(() => {
     feedbackElement.innerHTML = '';
     generateRandomQuestion();
