@@ -1,5 +1,3 @@
-"use strict";
-
 let timer;
 let totalTime = 30.0;  // 总时间30秒
 let correctAnswer;
@@ -139,6 +137,10 @@ function generateRandomQuestionEasy() {
 function evaluateExpression(expression) {
     // 去掉所有的空格
     expression = expression.replace(/\s+/g, '');
+
+    // 去掉所有的前导0，避免转换为八进制
+    // 正则表达式 by ChatGPT
+    expression = expression.replace(/(?<!\.)\b0+(\d+)/g, '$1')
 
     // 处理括号并替换为字符串拼接
     while (expression.includes('(')) {
