@@ -1,3 +1,5 @@
+"use strict";
+
 let timer;
 let totalTime = 30.0;  // 总时间30秒
 let correctAnswer;
